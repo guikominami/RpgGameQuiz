@@ -1,0 +1,29 @@
+.main-summary{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.column-summary{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.result-summary{
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .column-summary{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    margin-right: 2rem;
+  }
+}

@@ -1,0 +1,29 @@
+#player {
+  text-align: center;
+}
+
+#player p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#player input {
+  padding: 0.25rem;
+  color: #000000;
+}
+
+#player button {
+  cursor: pointer;
+  background-color: #7d7f7f;
+  padding: 0.4rem 1rem;
+  color: #ffffff;
+  border-style: none;
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+}
+
+#player button:hover {
+  background-color: #373737;
+  color: #fbffff;
+}

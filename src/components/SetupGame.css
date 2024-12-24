@@ -1,0 +1,42 @@
+.setup-game{
+  width: 41.5rem;
+  height: 4rem;
+  background: linear-gradient(#4df8df, #4df0f8);
+  color: #221c18;
+  box-shadow: 0 2px 8px rgba(35, 34, 34, 0.6);
+  border-radius: 6px;;
+}
+
+.select-quiz{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around; 
+  align-items: center;
+  height: 100%;
+} 
+
+.main-status-game h2{
+  text-transform: uppercase;
+} 
+
+@media screen and (max-width: 600px) {
+  
+  .setup-game{
+    width: 23rem;
+    height: auto;
+    padding: 1rem;
+    background: linear-gradient(#4df8df, #4df0f8);
+    color: #221c18;
+    box-shadow: 0 2px 8px rgba(35, 34, 34, 0.6);
+    border-radius: 6px;;
+  }
+  
+  .select-quiz{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+  } 
+  
+}

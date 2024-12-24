@@ -1,0 +1,33 @@
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.modal{
+  padding: 2rem 0 2rem 2.5rem;
+  width: auto;
+  display: "flex";
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+
+}
+
+.modal h2{
+  font: bold;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+  font-size:medium;
+  margin-bottom: 1rem;
+}
+
+.modal p{
+  color: rgb(34, 34, 34);
+  margin-bottom: .2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .modal{
+    padding: 2rem 0 2rem 1.5rem;
+    width: 22rem;
+  }
+} 

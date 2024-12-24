@@ -1,0 +1,73 @@
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #12352f;
+  color: #dfe1e0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background: #002a25;
+  color: #ffffff;
+}
+
+.options {
+  padding: 0.5rem 0.5rem;
+  color: black;
+  background-color: #54a399;
+  text-transform: uppercase;
+}
+
+.options:hover {
+  background-color: #329285;
+  color: rgb(12, 12, 12);
+}
+
+.start{
+  color: rgb(255, 255, 255);
+  background-color: #2c736a;
+  text-transform: uppercase;
+  width: 8rem; 
+}
+
+.start:hover {
+  background-color: #329285;
+  color: rgb(255, 255, 255);
+}
+
+.end{
+  color: rgb(255, 255, 255);
+  background-color: #2c736a;
+  text-transform: uppercase;
+  width: 8rem;
+}
+
+.end:hover {
+  background-color: #3cd3bf;
+  color: rgb(241, 0, 0);
+}
+
+.theme {
+  text-transform: uppercase;
+}
+
+.edit-points{
+  padding: 0 0.2rem 0 0.2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .theme {
+    padding: 0.4rem 0.4rem;
+  }
+  
+  .options {
+    padding: 0.4rem 0.4rem;
+  }
+  
+}
