@@ -1,0 +1,87 @@
+https://api-ninjas.com/api/trivia
+
+LlvtyjIu2pPX7Ws7ihRVLg==EmQEgbjRCLR4yWOT
+
+liberar execucao de scripts. Abrir o power shell em modo admin:
+Set-ExecutionPolicy Unrestricted
+
+install npm:
+npm install -g npm
+
+npm install 
+
+create vite project:
+npm create vite@latest
+
+npm run dev
+
+checar versões:
+npm view react version
+node -v
+
+gerar build
+npm run build
+
+---------------------------------
+GIT
+---------------------------------
+git push -u origin main
+
+---------------------------------
+useState
+---------------------------------
+https://react.dev/learn/updating-arrays-in-state
+
+setPerson({
+  ...person, // Copy the old fields
+  firstName: e.target.value // But override this one
+});
+
+Updating state based on the previous state 
+function sumAge() {
+  setAge(a => a + 1); // setAge(42 => 43)
+  setAge(a => a + 1); // setAge(43 => 44)
+  setAge(a => a + 1); // setAge(44 => 45)
+}
+
+Updating state based on the previous state 
+const [age, setAge] = useState(42);
+
+function increment() {
+  setAge(a => a + 1);
+}
+
+setProjectState((prevState) => {
+  const newProject = {
+    ...projectData,
+    id: Math.random(),
+  };
+
+//adding item
+setArtists( // Replace the state
+  [ // with a new array
+    ...artists, // that contains all the old items
+    { id: nextId++, name: name } // and one new item at the end
+  ]
+);
+
+//replacing the values
+setPlayerData({
+  ...playerData,
+  name: playerName.current.value,
+  class: playerClass.current.value,
+  power: 10,
+  defense: 10,
+});
+
+//estranho
+function handleAddNewPlayer(player) {
+    console.log("receba", player);
+
+    const oldPlayerData = [...playerData];
+    const playerToUpdate = oldPlayerData.find(
+      (p) => p.id === player.id
+    );
+    playerToUpdate.name = player.name;
+    setPlayerData(oldPlayerData);
+  }
