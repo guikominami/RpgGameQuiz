@@ -1,7 +1,7 @@
 {
   "name": "RpgGameQuiz",
-  "homepage": "https://mudalab.com.br/rpggame/",
-  "version": "0.0.0",
+  "homepage": "https://mudalab.com.br/rpgquizgame/",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
