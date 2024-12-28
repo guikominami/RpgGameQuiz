@@ -1,7 +1,14 @@
-/* eslint-disable react/prop-types */
 import "./GameSummary.css";
 
-export default function GameSummary({ playerAttack, playerDefend }) {
+import { useContext } from "react";
+import { PlayerContext } from "../../context/player-context";
+
+export default function GameSummary() {
+  const { player, status } = useContext(PlayerContext);
+
+  const playerAttack = player[status.attacking];
+  const playerDefend = player[status.defending];
+
   const winner =
     playerAttack.health > 0 ? playerAttack.name : playerDefend.name;
 

@@ -4,19 +4,19 @@ import Button from "./Basic/Button";
 import DropDownQuiz from "./Basic/DropDownQuiz";
 import "./SetupGame.css";
 
-export default function SetupGame({
-  onGameStart,
-  isGameStarted,
-  onThemeSelected,
-  theme,
-}) {
+import { PlayerContext } from "../context/player-context";
+import { useContext } from "react";
+
+export default function SetupGame() {
+  const { theme, gameStarted, startGame } = useContext(PlayerContext);
+
   let buttonStartElement = (
     <>
       <Button
-        onClick={() => onGameStart(isGameStarted)}
-        className={!isGameStarted ? "start" : "end"}
+        onClick={startGame}
+        className={!gameStarted ? "start" : "end"}
       >
-        {!isGameStarted ? "Start Game" : "End Game"}
+        {!gameStarted ? "Start Game" : "End Game"}
       </Button>
     </>
   );
@@ -25,11 +25,7 @@ export default function SetupGame({
     <>
       <section className="setup-game">
         <div className="select-quiz">
-          <DropDownQuiz
-            onThemeSelected={onThemeSelected}
-            theme={theme}
-            isGameStarted={isGameStarted}
-          />
+          <DropDownQuiz />
           {theme && buttonStartElement}
         </div>
       </section>

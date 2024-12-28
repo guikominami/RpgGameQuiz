@@ -2,7 +2,15 @@
 import RoundSummaryColumn from "./RoundSummaryColumn";
 import "./RoundSummary.css";
 
-export default function RoundSummary({ playerAttack, playerDefend }) {
+import { PlayerContext } from "../../context/player-context";
+import { useContext } from "react";
+
+export default function RoundSummary() {
+  const { player, status } = useContext(PlayerContext);
+
+  const playerAttack = player[status.attacking];
+  const playerDefend = player[status.defending];
+
   const damage = playerAttack.points - playerDefend.points;
 
   return (

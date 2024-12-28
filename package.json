@@ -1,5 +1,5 @@
 {
-  "name": "RpgGameQuiz",
+  "name": "rpggamequiz",
   "homepage": "https://mudalab.com.br/rpgquizgame/",
   "version": "1.0.0",
   "private": true,
@@ -14,6 +14,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rpggame": "file:",
+    "rpggamequiz": "file:",
     "RpgGameQuiz": "file:"
   },
   "devDependencies": {

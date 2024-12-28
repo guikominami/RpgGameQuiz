@@ -2,15 +2,16 @@
 import "./Player.css";
 import Button from "./Basic/Button";
 
-export default function Player({
-  playerData,
-  onGameStart,
-  activePlayer,
-  onPointsUpdate,
-}) {
-  let editingName = playerData.name;
-  let editingPower = playerData.power;
-  let editingDefense = playerData.defense;
+import { PlayerContext } from "../context/player-context";
+import { useContext } from "react";
+
+export default function Player({ playerId }) {
+  const { player, gameStarted, status, updatePlayer } =
+    useContext(PlayerContext);
+
+  let editingName = player[playerId].name;
+  let editingPower = player[playerId].power;
+  let editingDefense = player[playerId].defense;
 
   function handleClick(action) {
     if (action === "+" && editingDefense > 1) {
@@ -21,20 +22,20 @@ export default function Player({
       editingDefense += 1;
     }
 
-    onPointsUpdate(playerData.id, editingPower, editingDefense);
+    updatePlayer(player[playerId].id, editingPower, editingDefense);
   }
 
   let attackDefenseElement = (
     <>
       <span>
-        <b>{"Hit points:"}</b> {playerData.points}
+        <b>{"Hit points:"}</b> {player[playerId].points}
       </span>
       <span>
-        <b>Dice:</b> {playerData.dice}
+        <b>Dice:</b> {player[playerId].dice}
       </span>
       <span>
-        <b>Multiplier:</b> {playerData.multiplier > 1 && "x"}
-        {playerData.multiplier}
+        <b>Multiplier:</b> {player[playerId].multiplier > 1 && "x"}
+        {player[playerId].multiplier}
       </span>
     </>
   );
@@ -42,7 +43,7 @@ export default function Player({
   return (
     <section
       className={
-        playerData.id === activePlayer && onGameStart
+        player[playerId].id === status.activePlayer && gameStarted
           ? "player active"
           : "player"
       }
@@ -57,13 +58,13 @@ export default function Player({
             <b>Defense:</b> {editingDefense}
           </span>
           <span>
-            <b>Health:</b> {playerData.health}
+            <b>Health:</b> {player[playerId].health}
           </span>
         </div>
-        {onGameStart && (
+        {gameStarted && (
           <div className="player-column">{attackDefenseElement}</div>
         )}
-        {!onGameStart && (
+        {!gameStarted && (
           <div>
             <span>
               <Button

@@ -1,29 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "./Button";
 import { Themes } from "../../assets/questions";
 
 import "./DropDownQuiz.css";
 
-export default function DropDownQuiz({
-  theme,
-  onThemeSelected,
-  isGameStarted,
-}) {
+import { PlayerContext } from "../../context/player-context";
+
+export default function DropDownQuiz({ isGameStarted }) {
   const [isOpen, setIsOpen] = useState(false);
-  // const [quizTheme, setQuizTheme] = useState("Quiz theme");
+
+  const { theme, selectTheme } = useContext(PlayerContext);
 
   function handleClick() {
     setIsOpen((opening) => !opening);
     // setQuizTheme("Quiz theme:");
     // onthemeSelected(false);
-    onThemeSelected(undefined);
+    selectTheme(undefined);
   }
 
   function handleSelectOption(option) {
     // setQuizTheme(option.name);
     setIsOpen((opening) => !opening);
-    onThemeSelected(option);
+    selectTheme(option);
   }
 
   return (
