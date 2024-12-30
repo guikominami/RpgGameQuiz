@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { createContext, useState, useRef } from "react";
+import { createContext, useState } from "react";
 import randomNumber from "../components/Basic/RandomNumber";
 import Modal from "../components/Basic/Modal";
 import RoundSummary from "../components/Summary/RoundSummary";
@@ -22,7 +22,7 @@ export const PlayerContext = createContext({
 });
 
 export default function PlayerContextProvider({ children }) {
-  const healthInicial = 10;
+  const healthInicial = 1000;
 
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [isRoundFinished, setIsRoundFinished] = useState(false);
@@ -55,9 +55,8 @@ export default function PlayerContextProvider({ children }) {
       multiplier: 0,
     },
   ]);
-
-  const modalEndRound = useRef();
-  const modalEndGame = useRef();
+  const [isModalEndRoundOpen, setIsModalEndRoundOpen] = useState(false);
+  const [isModalEndGameOpen, setIsModalEndGameOpen] = useState(false);
 
   function handleUpdatePlayer(id, power, defense) {
     setPlayerData(
@@ -77,11 +76,11 @@ export default function PlayerContextProvider({ children }) {
 
   function handleGameStart() {
     //se for igual verdadeiro, finalizar game.
-    // if (gameStatus) {
-    //   console.log("terminar game");
-    //   handleEndOfGame();
-    //   return;
-    // }
+    if (isGameStarted) {
+      console.log("terminar game");
+      handleEndOfGame();
+      return;
+    }
 
     //Aqui entra no começo ou no fim
     setIsGameStarted((value) => !value);
@@ -92,8 +91,6 @@ export default function PlayerContextProvider({ children }) {
   }
 
   function handleNextTurn(resultQuestions) {
-    console.log(resultQuestions);
-
     let limitDice = 1;
 
     if (resultQuestions === 3) {
@@ -101,8 +98,7 @@ export default function PlayerContextProvider({ children }) {
     }
     const diceResult = randomNumber(limitDice, 6);
 
-    const resultQuestionsDice =
-      diceResult * (parseInt(resultQuestions) + 1);
+    const resultQuestionsDice = diceResult * (parseInt(resultQuestions) + 1);
 
     const pointsAttackOrDefense = statusPlayers.isAttacking
       ? playerData[statusPlayers.activePlayer].power
@@ -136,21 +132,19 @@ export default function PlayerContextProvider({ children }) {
         isAttacking: !prevState.isAttacking,
       }));
     } else {
-      // setTimeout(() => {
-      //   modal.current.open();
-      // }, 1000);
       setIsRoundFinished((roundStatus) => !roundStatus);
     }
   }
 
   function handleSubmitResultAttackDefense() {
     setIsRoundFinished((roundStatus) => !roundStatus);
-    modalEndRound.current.open();
+    setIsModalEndRoundOpen(true);
   }
 
   function handleEndOfGame() {
     setIsGameStarted((value) => !value);
     setThemeSelected(undefined);
+    setIsModalEndGameOpen(false);
 
     setStatusPlayers((prevState) => ({
       ...prevState,
@@ -176,6 +170,8 @@ export default function PlayerContextProvider({ children }) {
     //ROUND 1: atacando 0 defendendo 1
     //ROUND 2: atacando 1 defendendo 0
 
+    setIsModalEndRoundOpen(false);
+
     console.log("FIM DE ROUND");
 
     const hitPointsDifference =
@@ -185,7 +181,7 @@ export default function PlayerContextProvider({ children }) {
     let healthActive = playerData[statusPlayers.activePlayer].health;
 
     if (healthActive - hitPointsDifference < 0) {
-      modalEndGame.current.open();
+      setIsModalEndGameOpen(true);
     }
 
     setPlayerData(
@@ -240,13 +236,13 @@ export default function PlayerContextProvider({ children }) {
     <PlayerContext.Provider value={ctxValue}>
       <Modal
         buttonCaption="Ok"
-        ref={modalEndRound}
+        open={isModalEndRoundOpen}
         onClick={handleEndOfRound}
       >
         <RoundSummary />
       </Modal>
       <Modal
-        ref={modalEndGame}
+        open={isModalEndGameOpen}
         buttonCaption="Ok"
         onClick={handleEndOfGame}
       >

@@ -10,7 +10,7 @@ import { PlayerContext } from "../../context/player-context";
 export default function DropDownQuiz({ isGameStarted }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { theme, selectTheme } = useContext(PlayerContext);
+  const { theme, selectTheme, gameStarted } = useContext(PlayerContext);
 
   function handleClick() {
     setIsOpen((opening) => !opening);
@@ -30,7 +30,7 @@ export default function DropDownQuiz({ isGameStarted }) {
       <div className="dropdown-area">
         <Button
           className="theme"
-          disabled={isOpen || isGameStarted}
+          disabled={isOpen || gameStarted}
           onClick={handleClick}
         >
           {theme === undefined ? "QUIZ THEME" : theme.name}

@@ -1,22 +1,19 @@
 /* eslint-disable react/prop-types */
-import { forwardRef, useRef, useImperativeHandle } from "react";
+import { useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Button from "./Button";
 import "./Modal.css";
 
-export default forwardRef(function Modal(
-  { children, buttonCaption, ...props },
-  ref
-) {
+export default function Modal({ open, children, buttonCaption, ...props }) {
   const dialog = useRef();
 
-  useImperativeHandle(ref, () => {
-    return {
-      open() {
-        dialog.current.showModal();
-      },
-    };
-  });
+  useEffect(() => {
+    if (open) {
+      dialog.current.showModal();
+    } else {
+      dialog.current.close();
+    }
+  }, [open]);
 
   return createPortal(
     <dialog className="modal" ref={dialog} {...props}>
@@ -27,4 +24,4 @@ export default forwardRef(function Modal(
     </dialog>,
     document.getElementById("modal-root")
   );
-});
+}
